@@ -78,6 +78,20 @@ function showResults(results) {
   const table = document.querySelector("table#results tbody");
   table.innerHTML = "";
   for (const result of results) {
+    let desciplin;
+
+    if (result._discipline === "backstroke") {
+      desciplin = "Ryg";
+    } else if (result._discipline === "breaststroke") {
+      desciplin = "Bryst";
+    } else if (result._discipline === "butterfly") {
+      desciplin = "Butterfly";
+    } else if (result._discipline === "freestyle") {
+      desciplin = "Freestyle";
+    } else {
+      desciplin = result._discipline; 
+    }
+
     const html = /*html*/ `
     <tr>
       <td>${result.date.toLocaleString("da", {
@@ -86,7 +100,7 @@ function showResults(results) {
         year: "numeric",
       })}</td>
       <td>${result.memberId}</td>
-      <td>${result.discipline}</td>
+      <td>${desciplin}</td>
       <td>${result.type}</td>
       <td>${result._time}</td>
     </tr>`;
@@ -94,3 +108,4 @@ function showResults(results) {
     table.insertAdjacentHTML("beforeend", html);
   }
 }
+

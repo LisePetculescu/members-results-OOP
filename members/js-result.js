@@ -19,19 +19,7 @@ function construct(resultData) {
     get type() {
       return this._type === "competition" ? "Stævne" : "Træning";
     },
-    get discipline() {
-      if (this._discipline === "backstroke") {
-        return "Ryg";
-      } else if (this._discipline === "breaststroke") {
-        return "Bryst";
-      } else if (this._discipline === "butterfly") {
-        return "Butterfly";
-      } else if (this._discipline === "freestyle") {
-        return "Freestyle";
-      } else {
-        return this._discipline;
-      }
-    },
+    
   };
   // console.log(resultData.time);
   // console.log(ResultObject);

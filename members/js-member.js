@@ -55,7 +55,7 @@ function construct(memberdata) {
   // dette er ikke muligt pga. seal()
   // MemberObject.alder = 11;
 
-  console.log(MemberObject);
+  // console.log(MemberObject);
   return MemberObject;
 }
 
