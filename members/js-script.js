@@ -5,8 +5,8 @@ main();
 
 async function main() {
   await buildMembersList();
-  displayMembers(members);
   await pushResultsToList();
+  displayMembers(members);
   showResults(results);
 }
 
@@ -28,8 +28,9 @@ async function buildMembersList() {
 }
 
 function displayMembers(members) {
-  const table = document.querySelector("table#members tbody");
+  const table = document.querySelector("table#membersTable tbody");
   table.innerHTML = "";
+  // console.log(members);
   for (const member of members) {
     const name = member.firstName + " " + member.lastName;
 
@@ -50,10 +51,6 @@ function displayMembers(members) {
   }
 }
 
-// --------------------------------
-// ------------Results-------------
-// --------------------------------
-
 const results = [];
 
 async function fetchResults() {
@@ -72,11 +69,11 @@ async function pushResultsToList() {
 }
 
 function showResults(results) {
-  results.sort((a, b) => a.time - b.time);
-  // results.sort((a, b) => a.date - b.date);
+  results.sort((a, b) => a.milisecTime - b.milisecTime);
 
   const table = document.querySelector("table#results tbody");
   table.innerHTML = "";
+
   for (const result of results) {
     let desciplin;
 
@@ -89,8 +86,16 @@ function showResults(results) {
     } else if (result._discipline === "freestyle") {
       desciplin = "Freestyle";
     } else {
-      desciplin = result._discipline; 
+      desciplin = result._discipline;
     }
+
+    const member = matchResultMember(result.memberId, members);
+
+    const eventType = result.isTraining
+      ? "Træning"
+      : result.isCompetition
+      ? "Stævne"
+      : "Unknown";
 
     const html = /*html*/ `
     <tr>
@@ -99,13 +104,24 @@ function showResults(results) {
         month: "short",
         year: "numeric",
       })}</td>
-      <td>${result.memberId}</td>
+      <td>${result.memberName}</td>
       <td>${desciplin}</td>
-      <td>${result.type}</td>
-      <td>${result._time}</td>
+      <td>${eventType}</td>
+      <td>${result.time}</td>
     </tr>`;
+
+    // console.log(member);
 
     table.insertAdjacentHTML("beforeend", html);
   }
 }
+
+function matchResultMember(memberId, members) {
+  const matchingMember = members.find((member) => member._id === memberId);
+  // console.log("Matching Member:", matchingMember);
+
+  return matchingMember;
+}
+
+export { matchResultMember, members };
 
