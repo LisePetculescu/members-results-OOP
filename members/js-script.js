@@ -8,7 +8,6 @@ async function main() {
   displayMembers(members);
   await pushResultsToList();
   showResults(results);
-  console.log("test");
 }
 
 const members = [];
@@ -16,7 +15,6 @@ const members = [];
 async function fetchMembers() {
   const resp = await fetch("members.json");
   const data = await resp.json();
-  console.log("another test");
   return data;
 }
 
