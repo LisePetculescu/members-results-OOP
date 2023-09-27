@@ -22,7 +22,7 @@ async function buildMembersList() {
   const originalObjects = await fetchMembers();
 
   for (const orgobj of originalObjects) {
-    const memberObj = member.constructMember(orgobj);
+    const memberObj = member.construct(orgobj);
     members.push(memberObj);
   }
 }
@@ -31,9 +31,11 @@ function displayMembers(members) {
   const table = document.querySelector("table#members tbody");
   table.innerHTML = "";
   for (const member of members) {
+    const name = member.firstName + " " + member.lastName;
+
     const html = /*html*/ `
     <tr>
-      <td>${member.name}</td>
+      <td>${name}</td>
       <td>${member.active}</td>
       <td>${member.birthday.toLocaleString("da", {
         day: "numeric",
@@ -44,7 +46,6 @@ function displayMembers(members) {
       <td>${member.ageGroup}</td>
       <td>${member.email}</td>
     </tr>`;
-
     table.insertAdjacentHTML("beforeend", html);
   }
 }
@@ -65,7 +66,7 @@ async function pushResultsToList() {
   const resultsObjects = await fetchResults();
 
   for (const oldResultObj of resultsObjects) {
-    const resultObj = result.constructResult(oldResultObj);
+    const resultObj = result.construct(oldResultObj);
     results.push(resultObj);
   }
 }
@@ -92,10 +93,4 @@ function showResults(results) {
 
     table.insertAdjacentHTML("beforeend", html);
   }
-
-  // dato – for eksempel “mandag 18. september 2023” eller “18. sep 2023” eller “man 18. sep 2023”
-  // medlems id – fx -NVsgwYlb7PHXcVblSfA eller -KMN3xh-tz_7u3EgsjG1
-  // disciplin: ryg, bryst, crawl, butterfly eller freestyle
-  // type: træning eller stævne
-  // tid: i et format som fx 00:23.56 altså minutter:sekunder.hundrededele
 }

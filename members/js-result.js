@@ -1,4 +1,4 @@
-function constructResult(resultData) {
+function construct(resultData) {
   const ResultObject = {
     date: new Date(resultData.date),
     memberId: resultData.memberId,
@@ -38,4 +38,4 @@ function constructResult(resultData) {
   return ResultObject;
 }
 
-export { constructResult };
+export { construct };
