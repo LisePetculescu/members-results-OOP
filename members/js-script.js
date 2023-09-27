@@ -1,5 +1,5 @@
-import * as member from "./members.js";
-import * as result from "./results.js";
+import * as member from "./js-member.js";
+import * as result from "./js-result.js";
 
 main();
 
@@ -35,7 +35,11 @@ function displayMembers(members) {
     <tr>
       <td>${member.name}</td>
       <td>${member.active}</td>
-      <td>${member.birthday.toLocaleString("da", { day: "numeric", month: "short", year: "numeric" })}</td>
+      <td>${member.birthday.toLocaleString("da", {
+        day: "numeric",
+        month: "short",
+        year: "numeric",
+      })}</td>
       <td>${member.age}</td>
       <td>${member.ageGroup}</td>
       <td>${member.email}</td>
@@ -75,7 +79,11 @@ function showResults(results) {
   for (const result of results) {
     const html = /*html*/ `
     <tr>
-      <td>${result.date.toLocaleString("da", { day: "numeric", month: "short", year: "numeric" })}</td>
+      <td>${result.date.toLocaleString("da", {
+        day: "numeric",
+        month: "short",
+        year: "numeric",
+      })}</td>
       <td>${result.memberId}</td>
       <td>${result.discipline}</td>
       <td>${result.type}</td>

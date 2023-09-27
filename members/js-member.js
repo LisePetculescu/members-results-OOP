@@ -16,7 +16,7 @@ function constructMember(memberdata) {
     },
     get active() {
       return this._active ? "Aktiv" : "Inaktiv";
-    }
+    },
   };
 
   return MemberObject;
