@@ -37,21 +37,19 @@ function construct(resultData) {
       return this._type === "competition";
     },
     get memberName() {
-      return matchingMember
-        ? `${matchingMember.firstName} ${matchingMember.lastName}`
-        : "Member Not Found";
-    },
+      return matchingMember ? `${matchingMember.firstName} ${matchingMember.lastName}` : "Intet Medlem";
+    }
   };
   Object.defineProperties(ResultObject, {
     _id: {
-      writable: false,
+      writable: false
     },
     time: {
-      enumerable: false,
+      enumerable: false
     },
     type: {
-      enumerable: false,
-    },
+      enumerable: false
+    }
   });
   // console.log(ResultObject.memberName);
   // console.log(ResultObject.isTraining);
