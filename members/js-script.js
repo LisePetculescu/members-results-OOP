@@ -41,7 +41,7 @@ function displayMembers(members) {
       <td>${member.birthday.toLocaleString("da", {
         day: "numeric",
         month: "short",
-        year: "numeric",
+        year: "numeric"
       })}</td>
       <td>${member.age}</td>
       <td>${member.ageGroup}</td>
@@ -89,20 +89,16 @@ function showResults(results) {
       desciplin = result._discipline;
     }
 
-    const member = matchResultMember(result.memberId, members);
+    // const member = matchResultMember(result.memberId, members);
 
-    const eventType = result.isTraining
-      ? "Træning"
-      : result.isCompetition
-      ? "Stævne"
-      : "Unknown";
+    const eventType = result.isTraining ? "Træning" : result.isCompetition ? "Stævne" : "Unknown";
 
     const html = /*html*/ `
     <tr>
       <td>${result.date.toLocaleString("da", {
         day: "numeric",
         month: "short",
-        year: "numeric",
+        year: "numeric"
       })}</td>
       <td>${result.memberName}</td>
       <td>${desciplin}</td>
@@ -124,4 +120,3 @@ function matchResultMember(memberId, members) {
 }
 
 export { matchResultMember, members };
-
